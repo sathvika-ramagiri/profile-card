@@ -1,220 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Card</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Card with Rotating Ring</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #fdf6e3;
+      padding: 20px;
+    }
 
-        .profile-card {
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            width: 100%;
-            max-width: 350px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
+    .profile-card {
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      width: 100%;
+      max-width: 350px;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
 
-        .profile-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-        }
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
 
-        .profile-header {
-            background: linear-gradient(to right, #3a7bd5, #00d2ff);
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
+    .profile-header {
+      background: linear-gradient(to right, #3a7bd5, #00d2ff);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 5px solid white;
-            margin: 0 auto 15px;
-            display: block;
-            background-color: #e6e6e6;
-            overflow: hidden;
-        }
+    .rotating-ring {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 6px solid transparent;
+      border-top: 6px solid #d17a00;
+      border-right: 6px solid #ffd54f;
+      border-bottom: 6px solid #d17a00;
+      border-left: 6px solid #ffd54f;
+      margin: 0 auto 15px;
+      animation: spin 3s linear infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .profile-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #e6e6e6;
+    }
 
-        .name {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            transition: color 0.3s ease;
-        }
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
 
-        .title {
-            font-size: 16px;
-            opacity: 0.8;
-            margin-bottom: 10px;
-        }
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-        .profile-body {
-            padding: 20px;
-        }
+    .name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      transition: color 0.3s ease;
+    }
 
-        .bio {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            color: #555;
-        }
+    .title {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 10px;
+    }
 
-        .toggle-btn {
-            background: linear-gradient(to right, #3a7bd5, #00d2ff);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .profile-body {
+      padding: 20px;
+    }
 
-        .toggle-btn:hover {
-            background: linear-gradient(to right, #2d62aa, #00b8e0);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
+    .bio {
+      margin-bottom: 20px;
+      line-height: 1.6;
+      color: #555;
+    }
 
-        .hobbies {
-            list-style-type: none;
-            margin-bottom: 20px;
-            display: none;
-        }
+    .toggle-btn {
+      background: linear-gradient(to right, #3a7bd5, #00d2ff);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .hobbies li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            color: #555;
-        }
+    .toggle-btn:hover {
+      background: linear-gradient(to right, #2d62aa, #00b8e0);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
 
-        .hobbies li:last-child {
-            border-bottom: none;
-        }
+    .hobbies {
+      list-style-type: none;
+      margin-bottom: 20px;
+      display: none;
+    }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
+    .hobbies li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      color: #555;
+    }
 
-        .social-links a {
-            color: #3a7bd5;
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            padding: 8px 15px;
-            border-radius: 20px;
-            background-color: rgba(58, 123, 213, 0.1);
-        }
+    .hobbies li:last-child {
+      border-bottom: none;
+    }
 
-        .social-links a:hover {
-            color: white;
-            background: linear-gradient(to right, #3a7bd5, #00d2ff);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
 
-       
-        @media (max-width: 480px) {
-            .profile-card {
-                max-width: 100%;
-            }
-            
-            .profile-img {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .name {
-                font-size: 20px;
-            }
-            
-            .title {
-                font-size: 14px;
-            }
-        }
-    </style>
+    .social-links a {
+      color: #3a7bd5;
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      padding: 8px 15px;
+      border-radius: 20px;
+      background-color: rgba(58, 123, 213, 0.1);
+    }
+
+    .social-links a:hover {
+      color: white;
+      background: linear-gradient(to right, #3a7bd5, #00d2ff);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 480px) {
+      .profile-card {
+        max-width: 100%;
+      }
+
+      .rotating-ring {
+        width: 110px;
+        height: 110px;
+      }
+
+      .profile-img {
+        width: 90px;
+        height: 90px;
+      }
+
+      .name {
+        font-size: 20px;
+      }
+
+      .title {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="profile-card">
-        <div class="profile-header">
-            <div class="profile-img">
-                <img src="user.png" alt="Profile Image">
-            </div>
-            <h2 class="name">Sathvika Ramagiri</h2>
-            <p class="title">Web Developer & CS Student</p>
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="rotating-ring">
+        <div class="profile-img">
+          <img src="user.png" alt="Profile Image" />
         </div>
-        
-        <div class="profile-body">
-            <p class="bio">B.Tech Computer Science Engineering student with hands-on experience in web development. Currently interning at GennextIT, focusing on MERN stack development.</p>
-            
-            <button class="toggle-btn" id="toggleHobbies">Show Hobbies</button>
-            
-            <ul class="hobbies" id="hobbiesList">
-                <li>Painting</li>
-                <li>Event Organization</li>
-                <li>Web Development</li>
-            </ul>
-            
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/sathvika-ramagiri-0284722a2" target="_blank">LinkedIn</a>
-                <a href="https://github.com/sathvika-ramagiri" target="_blank">GitHub</a>
-            </div>
-        </div>
+      </div>
+      <h2 class="name">Sathvika Ramagiri</h2>
+      <p class="title">Web Developer & CS Student</p>
     </div>
 
-    <script>
-       
-        const toggleBtn = document.getElementById('toggleHobbies');
-        const hobbiesList = document.getElementById('hobbiesList');
-        
-        toggleBtn.addEventListener('click', function() {
-            if (hobbiesList.style.display === 'block') {
-                hobbiesList.style.display = 'none';
-                toggleBtn.textContent = 'Show Hobbies';
-            } else {
-                hobbiesList.style.display = 'block';
-                toggleBtn.textContent = 'Hide Hobbies';
-            }
-        });
-        
-       
-        const name = document.querySelector('.name');
-        
-        name.addEventListener('mouseover', function() {
-            this.style.color = '#FFD700';
-        });
-        
-        name.addEventListener('mouseout', function() {
-            this.style.color = ''; 
-        });
-    </script>
+    <div class="profile-body">
+      <p class="bio">B.Tech Computer Science Engineering student with hands-on experience in web development. Currently interning at GennextIT, focusing on MERN stack development.</p>
+
+      <button class="toggle-btn" id="toggleHobbies">Show Hobbies</button>
+
+      <ul class="hobbies" id="hobbiesList">
+        <li>Painting</li>
+        <li>Event Organization</li>
+        <li>Web Development</li>
+      </ul>
+
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/sathvika-ramagiri-0284722a2" target="_blank">LinkedIn</a>
+        <a href="https://github.com/sathvika-ramagiri" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleHobbies');
+    const hobbiesList = document.getElementById('hobbiesList');
+
+    toggleBtn.addEventListener('click', function () {
+      if (hobbiesList.style.display === 'block') {
+        hobbiesList.style.display = 'none';
+        toggleBtn.textContent = 'Show Hobbies';
+      } else {
+        hobbiesList.style.display = 'block';
+        toggleBtn.textContent = 'Hide Hobbies';
+      }
+    });
+
+    const name = document.querySelector('.name');
+    name.addEventListener('mouseover', function () {
+      this.style.color = '#FFD700';
+    });
+    name.addEventListener('mouseout', function () {
+      this.style.color = '';
+    });
+  </script>
 </body>
 </html>
